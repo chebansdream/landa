@@ -320,7 +320,7 @@
                                 </div>
                                 <div class="form-actions">
                                     <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
-                                    <button type="button" class="btn btn-inverse">Cancel</button>
+                                    <button type="button" class="btn btn-inverse" onclick="closeModal();">Cancel</button>
                                 </div>
                             </form>
                         </div>
@@ -420,7 +420,6 @@
             if($(this).hasClass('details-control')){
                 var tr = $(this).closest('tr');
                 var row = table.row( tr );
-
                 if ( row.child.isShown() ) {
                     // This row is already open - close it
                     row.child.hide();
@@ -451,13 +450,16 @@
                 $('#phone').val(datas[16].textContent);
                 $('#additional').val(datas[17].textContent);
                 $('#report_id').val(datas[18].textContent);
+
                 $('#editModal').modal('show');
             }
 
         } );
 
     } );
-
+    function closeModal(){
+        $('#editModal').modal('hide');
+    }
 </script>
 <!-- ============================================================== -->
 <!-- Style switcher -->

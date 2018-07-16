@@ -344,7 +344,7 @@
             <!-- User profile -->
             <div class="user-profile">
                 <!-- User profile image -->
-                <div class="profile-img"> <img src="{{asset('assets/images/users/1.jpg')}}" alt="user" /> </div>
+                <div class="profile-img"> <img src="{{asset('assets/images/avatar.png')}}" alt="user" /> </div>
                 <!-- User profile text-->
                 <div class="profile-text"> <a href="#" class="dropdown-toggle link u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">{{$user->name}} <span class="caret"></span></a>
                     <div class="dropdown-menu animated flipInY">
