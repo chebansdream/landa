@@ -20,7 +20,9 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/view_reports', 'HomeController@view_reports');
+Route::get('/new_report', 'HomeController@new_report');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::post('/add_report', 'HomeController@add_report');
+Route::post('/filter_report', 'HomeController@filter_report');
