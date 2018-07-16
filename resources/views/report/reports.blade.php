@@ -39,7 +39,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Owner Group</label>
-                                                <input type="text" id="owner" name="f_owner" class="form-control" list="owner_list" style="text-transform:uppercase">
+                                                <input type="text" id="f_owner" name="f_owner" class="form-control" list="owner_list" style="text-transform:uppercase">
                                                 <datalist id="owner_list">
                                                     @foreach($owner_list as $one_list)
                                                         <option value="{{$one_list->owner_group}}">
@@ -50,7 +50,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="control-label">Address</label>
-                                                <input type="text" id="owner" name="f_address" class="form-control" list="address_list" placeholder="example: 10 W ANDERSON RD , LINWOOD ,MI ,48634">
+                                                <input type="text" id="f_address" name="f_address" class="form-control" list="address_list" placeholder="example: 10 W ANDERSON RD , LINWOOD ,MI ,48634">
                                                 <datalist id="address_list">
                                                     @foreach($address_list as $one_list)
                                                         <option value="{{$one_list->address}}">
@@ -93,6 +93,7 @@
                                         <th style="display: none;">Zipcode</th>
                                         <th style="display: none;">Phone</th>
                                         <th style="display: none;">Additional</th>
+                                        <th style="display: none;">id</th>
                                     </tr>
                                     </thead>
                                     <tfoot>
@@ -115,6 +116,7 @@
                                         <th style="display: none;">Zipcode</th>
                                         <th style="display: none;">Phone</th>
                                         <th style="display: none;">Additional</th>
+                                        <th style="display: none;">id</th>
                                     </tr>
                                     </tfoot>
                                     <tbody>
@@ -138,6 +140,7 @@
                                             <td style="display: none;">{{$one_report->zip}}</td>
                                             <td style="display: none;">{{$one_report->phone}}</td>
                                             <td style="display: none;">{{$one_report->additional}}</td>
+                                            <td style="display: none;">{{$one_report->_id}}</td>
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -151,7 +154,181 @@
             <!-- End PAge Content -->
             <!-- ============================================================== -->
 
-
+            <div id="editModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="myModalLabel">Edit Report</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="post" action="{{url('edit_report')}}">
+                                @csrf
+                                <div class="form-body">
+                                    <h3 class="card-title">Report Details</h3>
+                                    <hr>
+                                    <div class="row p-t-20">
+                                        <input type="hidden" id="report_id" name="report_id">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Owner Group</label>
+                                                <input type="text" id="owner" name="owner_group" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Priority</label>
+                                                <input type="text" id="priority" name="priority" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Parcels</label>
+                                                <input type="number" id="parcels" name="parcels" class="form-control" placeholder="0">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Total Acerage</label>
+                                                <input type="text" id="acerage" name="total_acerage" class="form-control" placeholder="0.00">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Land Agent</label>
+                                                <input type="text" id="land_agent" name="land_agent" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Change Land Agent</label>
+                                                <input type="text" id="change_land_agent" name="change_land_agent" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Status</label>
+                                                <select class="form-control" name="status" id="status">
+                                                    <option value=""></option>
+                                                    <option value="Targeted">Targeted</option>
+                                                    <option value="Owner Declined">Owner Declined</option>
+                                                    <option value="Potential Local Official">Potential Local Official</option>
+                                                    <option value="Negotiating with Owner">Negotiating with Owner</option>
+                                                    <option value="Returned Signed">Returned Signed</option>
+                                                    <option value="Verbal Commitment">Verbal Commitment</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Opposition</label>
+                                                <select class="form-control" name="opposition" id="opposition">
+                                                    <option value=""></option>
+                                                    <option value="Field Integrity">Field Integrity</option>
+                                                    <option value="Financial">Financial</option>
+                                                    <option value="Wildlife">Wildlife</option>
+                                                    <option value="Crop Damages">Crop Damages</option>
+                                                    <option value="Title Encumbrance">Title Encumbrance</option>
+                                                    <option value="Flicker">Flicker</option>
+                                                    <option value="Sound">Sound</option>
+                                                    <option value="Ordinance">Ordinance</option>
+                                                    <option value="Red Lights">Red Lights</option>
+                                                    <option value="View Shed">View Shed</option>
+                                                    <option value="Recreational">Recreational</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label class="control-label">Status Date</label>
+                                                <input type="date" name="status_date" id="status_date" class="form-control" placeholder="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label class="control-label">Note</label>
+                                                <textarea rows="6" name="notes" id="notes" class="form-control" placeholder=""></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--/row-->
+                                    <h3 class="box-title m-t-40">Contact Info</h3>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group">
+                                                <label>Primary Contact</label>
+                                                <input type="text" id="primary_contact" name="primary_contact" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12 ">
+                                            <div class="form-group">
+                                                <label>Address</label>
+                                                <input type="text" id="address" name="address" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>City</label>
+                                                <input type="text" id="city" name="city" class="form-control">
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>State</label>
+                                                <input type="text" id="state" name="state" class="form-control">
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                    <!--/row-->
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Zip Code</label>
+                                                <input type="text" id="zip" name="zip" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Phone Number</label>
+                                                <input type="text" id="phone" name="phone" class="form-control">
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Additional Contact</label>
+                                                <input type="text" id="additional" name="additional" class="form-control">
+                                            </div>
+                                        </div>
+                                        <!--/span-->
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Save</button>
+                                    <button type="button" class="btn btn-inverse">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
 
 
 
@@ -230,7 +407,7 @@
                 null,null,null,null,
                 null,null,null,null,
                 null,null,null,null,
-                null,null,null,null,null
+                null,null,null,null,null,null
             ],
             columnDefs: [
                 { width: 200, targets: 1 }
@@ -239,21 +416,46 @@
         } );
 
         // Add event listener for opening and closing details
-        $('#example23 tbody').on('click', 'td.details-control', function () {
-            var tr = $(this).closest('tr');
-            var row = table.row( tr );
+        $('#example23 tbody').on('click', 'td', function () {
+            if($(this).hasClass('details-control')){
+                var tr = $(this).closest('tr');
+                var row = table.row( tr );
 
-            if ( row.child.isShown() ) {
-                // This row is already open - close it
-                row.child.hide();
-                tr.removeClass('shown');
+                if ( row.child.isShown() ) {
+                    // This row is already open - close it
+                    row.child.hide();
+                    tr.removeClass('shown');
+                }
+                else {
+                    // Open this row
+                    row.child( format(row.data()) ).show();
+                    tr.addClass('shown');
+                }
+            }else{
+                var datas = $(this).parent().find('td');
+                $('#owner').val(datas[1].textContent);
+                $('#priority').val(datas[2].textContent);
+                $('#parcels').val(datas[3].textContent);
+                $('#acerage').val(datas[4].textContent);
+                $('#land_agent').val(datas[5].textContent);
+                $('#change_land_agent').val(datas[6].textContent);
+                $('#status').val(datas[7].textContent);
+                $('#opposition').val(datas[8].textContent);
+                $('#status_date').val(datas[9].textContent);
+                $('#notes').val(datas[10].textContent);
+                $('#primary_contact').val(datas[11].textContent);
+                $('#address').val(datas[12].textContent);
+                $('#city').val(datas[13].textContent);
+                $('#state').val(datas[14].textContent);
+                $('#zip').val(datas[15].textContent);
+                $('#phone').val(datas[16].textContent);
+                $('#additional').val(datas[17].textContent);
+                $('#report_id').val(datas[18].textContent);
+                $('#editModal').modal('show');
             }
-            else {
-                // Open this row
-                row.child( format(row.data()) ).show();
-                tr.addClass('shown');
-            }
+
         } );
+
     } );
 
 </script>

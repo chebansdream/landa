@@ -26,3 +26,4 @@ Auth::routes();
 
 Route::post('/add_report', 'HomeController@add_report');
 Route::post('/filter_report', 'HomeController@filter_report');
+Route::post('/edit_report', 'HomeController@edit_report');

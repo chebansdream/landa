@@ -5,3 +5,10 @@ td.details-control {
 tr.shown td.details-control {
     background: url('../assets/images/details_close.png') no-repeat center center;
 }
+@media (min-width: 900px){
+    #editModal .modal-dialog {
+        max-width: 800px;
+        margin: 1.75rem auto;
+    }
+}
+

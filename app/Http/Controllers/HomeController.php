@@ -82,6 +82,31 @@ class HomeController extends Controller
             ]);
         return redirect('view_reports');
     }
+    public function edit_report(Request $request){
+        $user = Auth::user();
+        DB::table('report_data')
+            ->where('_id', $request->report_id)
+            ->update([
+                'owner_group' => $request->owner_group,
+                'priority' => $request->priority,
+                'parcels' => $request->parcels,
+                'total_acerage' => $request->total_acerage,
+                'land_agent' => $request->land_agent,
+                'change_land_agent' => $request->change_land_agent,
+                'status' =>  $request->status,
+                'opposition' => $request->opposition,
+                'status_date' => $request->status_date,
+                'notes' => $request->notes,
+                'primary_contact' => $request->primary_contact,
+                'address' => $request->address,
+                'city' => $request->city,
+                'state' => $request->state,
+                'zip' => $request->zip,
+                'phone' => $request->phone,
+                'additional' => $request->additional
+            ]);
+        return redirect('view_reports');
+    }
     public function filter_report(Request $request){
         $user = Auth::user();
         $f_owner = $request->f_owner;

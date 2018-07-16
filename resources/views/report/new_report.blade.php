@@ -59,7 +59,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="control-label">Status</label>
-                                        <select class="form-control" name="status">
+                                        <select class="form-control" name="status" id="status">
                                             <option value=""></option>
                                             <option value="Targeted">Targeted</option>
                                             <option value="Owner Declined">Owner Declined</option>
@@ -73,7 +73,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="control-label">Opposition</label>
-                                        <select class="form-control" name="opposition">
+                                        <select class="form-control" name="opposition" id="opposition">
                                             <option value=""></option>
                                             <option value="Field Integrity">Field Integrity</option>
                                             <option value="Financial">Financial</option>
@@ -92,7 +92,7 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label class="control-label">Status Date</label>
-                                        <input type="date" name="status_date" class="form-control" placeholder="">
+                                        <input type="date" name="status_date" id="status_date" class="form-control" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -100,7 +100,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="control-label">Note</label>
-                                        <textarea rows="6" name="notes" class="form-control" placeholder=""></textarea>
+                                        <textarea rows="6" name="notes" id="notes" class="form-control" placeholder=""></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
                                 <div class="col-md-12 ">
                                     <div class="form-group">
                                         <label>Primary Contact</label>
-                                        <input type="text" name="primary_contact" class="form-control">
+                                        <input type="text" id="primary_contact" name="primary_contact" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +119,7 @@
                                 <div class="col-md-12 ">
                                     <div class="form-group">
                                         <label>Address</label>
-                                        <input type="text" name="address" class="form-control">
+                                        <input type="text" id="address" name="address" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -127,14 +127,14 @@
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>City</label>
-                                        <input type="text" name="city" class="form-control">
+                                        <input type="text" id="city" name="city" class="form-control">
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>State</label>
-                                        <input type="text" name="state" class="form-control">
+                                        <input type="text" id="state" name="state" class="form-control">
                                     </div>
                                 </div>
                                 <!--/span-->
@@ -144,20 +144,20 @@
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Zip Code</label>
-                                        <input type="text" name="zip" class="form-control">
+                                        <input type="text" id="zip" name="zip" class="form-control">
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Phone Number</label>
-                                        <input type="text" name="phone" class="form-control">
+                                        <input type="text" id="phone" name="phone" class="form-control">
                                     </div>
                                 </div>
                                 <!--/span-->
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Additional Contact</label>
-                                        <input type="text" name="additional" class="form-control">
+                                        <input type="text" id="additional" name="additional" class="form-control">
                                     </div>
                                 </div>
                                 <!--/span-->
