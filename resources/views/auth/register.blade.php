@@ -46,7 +46,7 @@
             <div class="card-body">
                 <img src="{{asset('assets/images/logo-02.png')}}" style="width: 150px;  margin-left: 30%;">
                 <form class="form-horizontal form-material" id="loginform" method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
-                    @csrf
+                    {{csrf_field()}}
                     <h3 class="box-title m-b-20">Sign Up</h3>
                     <div class="form-group">
                         <div class="col-xs-12">

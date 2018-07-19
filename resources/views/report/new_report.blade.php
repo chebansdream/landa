@@ -9,11 +9,26 @@
                 </div>
                 <div class="card-body">
                     <form method="post" action="{{url('add_report')}}">
-                        @csrf
+                        {{csrf_field()}}
                         <div class="form-body">
                             <h3 class="card-title">Report Details</h3>
                             <hr>
                             <div class="row p-t-20">
+                                <input type="hidden" id="report_id" name="report_id">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label class="control-label">Projects</label>
+                                        <select class="form-control" name="project_id" id="project_id">
+                                            <option value=""></option>
+                                            @foreach($all_projects as $one_item)
+                                                <option value="{{$one_item->_id}}">{{$one_item->title}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <input type="hidden" id="report_id" name="report_id">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="control-label">Owner Group</label>

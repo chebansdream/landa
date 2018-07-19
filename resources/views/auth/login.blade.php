@@ -46,11 +46,11 @@
             <div class="card-body">
                 <img src="{{asset('assets/images/logo-02.png')}}" style="width: 150px;  margin-left: 30%;">
                 <form method="post" class="form-horizontal form-material" id="loginform" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
-                    @csrf
+                    {{csrf_field()}}
                     <h3 class="box-title m-b-20">Sign In</h3>
                     <div class="form-group ">
                         <div class="col-xs-12">
-                            <input class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" type="email" name="email" required="" placeholder="Email"> </div>
+                            <input autofocus="true" class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" type="email" name="email" required="" placeholder="Email"> </div>
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('email') }}</strong>
